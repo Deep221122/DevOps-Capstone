@@ -208,6 +208,7 @@ resource "aws_s3_bucket_notification" "lambda_trigger" {
 
   depends_on = [aws_lambda_permission.allow_s3]
 }
+
 # allow lambda function to upload file on S3 Upload bucket
 resource "aws_lambda_permission" "allow_s3" {
   statement_id  = "AllowExecutionFromS3"
@@ -329,7 +330,7 @@ resource "aws_apigatewayv2_api" "presign_api" {
 resource "aws_apigatewayv2_integration" "presign_api_integration" {
   api_id             = aws_apigatewayv2_api.presign_api.id
   integration_type   = "AWS_PROXY"
-  integration_uri    = aws_lambda_function.presign_lambda.invoke_arn
+  integration_uri    = aws_lambda_function.presigned_lambda.invoke_arn
   integration_method = "POST"
   payload_format_version = "2.0"
 }
@@ -375,7 +376,7 @@ resource "aws_apigatewayv2_api" "presigned_api" {
 resource "aws_lambda_permission" "allow_apigw_invoke_presign" {
   statement_id  = "AllowInvokeFromAPIGatewayPresign"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.presign_lambda.function_name
+  function_name = aws_lambda_function.presigned_lambda.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.presign_api.execution_arn}/*/*"
+  source_arn    = "${aws_apigatewayv2_api.presigned_api.execution_arn}/*/*"
 }
