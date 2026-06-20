@@ -306,7 +306,7 @@ resource "aws_lambda_function" "presign_lambda" {
   handler       = "main.lambda_handler"
   runtime       = "python3.12"
   filename      = "${path.module}/../../backend/generate-presigned-url/lambda.zip"
-  source_code_hash = filebase64sha256("${path.module}/../../backend/generate-presigned-url/lambda.zip")
+  source_code_hash = filebase64sha256("${path.module}/../../backend/generated-presigned-url/lambda.zip")
 
   environment {
     variables = {
