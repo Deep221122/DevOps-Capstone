@@ -16,5 +16,5 @@ output "cloudfront_url" {
 }
 output "presigned_url_api_endpoint" {
   description = "API Gateway endpoint for generating presigned URLs"
-  value       = aws_api_gatewayv2_api.my_api.api_endpoint
+  value       = aws_apigatewayv2_api.presigned_api.api_endpoint
 }
