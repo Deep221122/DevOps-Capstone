@@ -1,6 +1,6 @@
 output "lambda_function_name" {
   description = "Name of the Lambda function for processing uploads"
-  value       = aws_lambda_function.process_uploaded_file.function_name
+  value       = aws_lambda_function.process_upload_file.function_name
 }
 output "s3_upload_bucket_name" {
   description = "Name of the S3 bucket for file uploads"
