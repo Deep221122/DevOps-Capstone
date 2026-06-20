@@ -180,11 +180,11 @@ resource "aws_s3_bucket" "upload_bucket" {
 # Lambda: Process Uploaded File
 # -----------------------------
 
-resource "aws_lambda_function" "process_uploaded_file" {
+resource "aws_lambda_function" "process_upload_file" {
   function_name = "process-uploaded-file"
   runtime       = "python3.11"
   handler       = "main.lambda_handler"
-  filename         = "${path.module}/../../backend/process-uploaded-file/lambda.zip"
+  filename         = "${path.module}/../../backend/process-upload-file/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../backend/process-upload-file/lambda.zip")
   role = aws_iam_role.lambda_exec_role.arn
 
@@ -300,7 +300,7 @@ resource "aws_iam_role_policy_attachment" "presign_lambda_attach" {
   policy_arn = aws_iam_policy.presign_lambda_policy.arn
 }
 # create Lambda for Presigned Upload URL
-resource "aws_lambda_function" "presign_lambda" {
+resource "aws_lambda_function" "presigned_lambda" {
   function_name = "DevOps-Accelerator-Presign-Handler"
   role          = aws_iam_role.presign_lambda_role.arn
   handler       = "main.lambda_handler"
