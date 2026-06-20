@@ -29,12 +29,13 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Zip Lambda function code
+        working-directory: backend/process-uploaded-file
         run: |
-          cd backend/process-uploaded-file
           zip -r lambda.zip .
 
       - name: Update Lambda code
+        working-directory: backend/process-uploaded-file
         run: |
           aws lambda update-function-code \
             --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \
-            --zip-file fileb://backend/process-uploaded-file/lambda.zip
+            --zip-file fileb://lambda.zip
