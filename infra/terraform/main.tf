@@ -306,7 +306,7 @@ resource "aws_lambda_function" "presigned_lambda" {
   role          = aws_iam_role.presign_lambda_role.arn
   handler       = "main.lambda_handler"
   runtime       = "python3.12"
-  filename      = "${path.module}/../../backend/generate-presigned-url/lambda.zip"
+  filename      = "${path.module}/../../backend/generated-presigned-url/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../backend/generated-presigned-url/lambda.zip")
 
   environment {
