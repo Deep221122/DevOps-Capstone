@@ -366,6 +366,12 @@ resource "aws_apigatewayv2_stage" "presign_stage" {
   }
 }
 
+resource "aws_apigatewayv2_api" "presigned_api" {
+  name          = "presigned-url-api"
+  protocol_type = "HTTP"
+  # Additional configuration...
+}
+
 resource "aws_lambda_permission" "allow_apigw_invoke_presign" {
   statement_id  = "AllowInvokeFromAPIGatewayPresign"
   action        = "lambda:InvokeFunction"
