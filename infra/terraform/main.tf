@@ -185,7 +185,7 @@ resource "aws_lambda_function" "process_uploaded_file" {
   runtime       = "python3.11"
   handler       = "main.lambda_handler"
   filename         = "${path.module}/../../backend/process-uploaded-file/lambda.zip"
-  source_code_hash = filebase64sha256("${path.module}/../../backend/process-uploaded-file/lambda.zip")
+  source_code_hash = filebase64sha256("${path.module}/../../backend/process-upload-file/lambda.zip")
   role = aws_iam_role.lambda_exec_role.arn
 
   environment {
